@@ -1,58 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pokedex/src/api/api_constants/pokemon_list_state.dart';
-import 'package:pokedex/src/providers/pokemon_provider.dart';
-import 'package:pokedex/src/widgets/pokemon_list.dart';
 
-class HomeBody extends StatelessWidget {
-  const HomeBody({
+class DetailErrorView extends StatelessWidget {
+  const DetailErrorView({
     super.key,
-    required this.provider,
-    required this.searchController,
+    required this.error,
+    required this.onRetry,
   });
 
-  final PokemonProvider provider;
-  final TextEditingController searchController;
-
-  @override
-  Widget build(BuildContext context) {
-    switch (provider.state) {
-      case PokemonListState.idle:
-      case PokemonListState.loading:
-        return const Center(child: CircularProgressIndicator());
-
-      case PokemonListState.error:
-        return _ErrorView(
-          message: provider.errorMessage,
-          onRetry: provider.loadPokemon,
-        );
-
-      case PokemonListState.success:
-        return PokemonList(
-          pokemonList: provider.pokemon,
-          onPokemonTap: (p) => context.go('/pokemon/${p.name}'),
-        );
-    }
-  }
-}
-
-class _ErrorView extends StatelessWidget {
-  const _ErrorView({required this.message, required this.onRetry});
-
-  final String message;
+  final String error;
   final VoidCallback onRetry;
 
   bool get _isNoInternetError =>
-      message.toLowerCase().contains('internet') ||
-      message.toLowerCase().contains('socket') ||
-      message.toLowerCase().contains('connection');
+      error.toLowerCase().contains('internet') ||
+          error.toLowerCase().contains('socket') ||
+          error.toLowerCase().contains('connection');
 
   String get _errorTitle =>
-      _isNoInternetError ? 'Sin conexión' : 'Algo salió mal';
+      _isNoInternetError ? 'Sin conexión' : 'No se pudo cargar';
 
   String get _errorDescription => _isNoInternetError
       ? 'Parece que no tienes conexión a internet.\nVerifica tu conexión e intenta de nuevo.'
-      : 'Hubo un problema al cargar los datos.\nPor favor, intenta de nuevo.';
+      : 'Hubo un problema al cargar los detalles del pokémon.\nPor favor, intenta de nuevo.';
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +38,7 @@ class _ErrorView extends StatelessWidget {
               decoration: BoxDecoration(
                 color: _isNoInternetError
                     ? cs.errorContainer
-                    : Colors.red..withValues(alpha: 0.1),
+                    : Colors.red.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -82,9 +50,10 @@ class _ErrorView extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               _errorTitle,
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),

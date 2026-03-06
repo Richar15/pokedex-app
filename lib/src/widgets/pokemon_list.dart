@@ -27,7 +27,7 @@ class PokemonList extends StatelessWidget {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: cs.secondaryContainer.withOpacity(0.5),
+                  color: cs.secondaryContainer.withValues(alpha: 0.5),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
