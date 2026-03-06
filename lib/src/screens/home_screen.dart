@@ -43,9 +43,18 @@ class _HomeScreenState extends State<HomeScreen> {
           _provider.search('');
         },
       ),
-      body: HomeBody(
-        provider: _provider,
-        searchController: _searchController,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/assets/icon/pokemon.png'),
+            fit: BoxFit.cover,
+            opacity: 0.2,
+          ),
+        ),
+        child: HomeBody(
+          provider: _provider,
+          searchController: _searchController,
+        ),
       ),
     );
   }

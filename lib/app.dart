@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/src/constants/app_theme.dart';
 import 'package:pokedex/src/router/app_router.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
       title: 'Pokédex',
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.light(),
+      theme: AppTheme.buildTheme(),
+      darkTheme: AppTheme.buildTheme(),
       themeMode: ThemeMode.light,
     );
   }

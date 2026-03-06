@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/src/api/api_constants/pokemon_type_colors.dart';
+import 'package:pokedex/src/constants/pokemon_type_colors.dart';
 
 
 class TypeChip extends StatelessWidget {

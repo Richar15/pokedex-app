@@ -1,21 +1,18 @@
 import 'package:go_router/go_router.dart';
-import 'package:pokedex/src/services/navigation_service.dart';
-import '../screens/splash_screen.dart';
+import 'package:pokedex/src/widgets/navigation_service.dart';
 import '../screens/home_screen.dart';
 import '../screens/pokemon_detail_screen.dart';
 
 class AppRouter {
   AppRouter._();
 
-  static const String splash = '/splash';
   static const String home = '/';
   static const String detail = '/pokemon/:name';
 
   static final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: '/splash',
+    initialLocation: '/',
     routes: [
-      GoRoute(path: splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: home, builder: (context, state) => const HomeScreen()),
       GoRoute(
         path: detail,

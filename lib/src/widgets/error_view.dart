@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 
-class DetailErrorView extends StatelessWidget {
-  const DetailErrorView({
-    super.key,
-    required this.error,
-    required this.onRetry,
-  });
+class ErrorView extends StatelessWidget {
+  const ErrorView({super.key, required this.message, required this.onRetry});
 
-  final String error;
+  final String message;
   final VoidCallback onRetry;
 
   bool get _isNoInternetError =>
-      error.toLowerCase().contains('internet') ||
-          error.toLowerCase().contains('socket') ||
-          error.toLowerCase().contains('connection');
+      message.toLowerCase().contains('internet') ||
+      message.toLowerCase().contains('socket') ||
+      message.toLowerCase().contains('connection');
 
   String get _errorTitle =>
-      _isNoInternetError ? 'Sin conexión' : 'No se pudo cargar';
+      _isNoInternetError ? 'Sin conexión' : 'Algo salió mal';
 
   String get _errorDescription => _isNoInternetError
       ? 'Parece que no tienes conexión a internet.\nVerifica tu conexión e intenta de nuevo.'
-      : 'Hubo un problema al cargar los detalles del pokémon.\nPor favor, intenta de nuevo.';
+      : 'Hubo un problema al cargar los datos.\nPor favor, intenta de nuevo.';
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +46,9 @@ class DetailErrorView extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               _errorTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),

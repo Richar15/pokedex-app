@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/src/api/api_constants/api_constans.dart';
-import '../models/pokemon.dart';
+import 'package:pokedex/src/constants/app_colors.dart';
+import '../../models/pokemon.dart';
 
 class PokemonCard extends StatelessWidget {
   const PokemonCard({super.key, required this.pokemon, required this.onTap});
@@ -19,13 +20,14 @@ class PokemonCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        elevation: 3,
+        elevation: 6,
+        shadowColor: cs.primary.withValues(alpha: 0.3),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              colors: [cs.primaryContainer, cs.secondaryContainer],
+            gradient: const LinearGradient(
+              colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -40,17 +42,26 @@ class PokemonCard extends StatelessWidget {
                     imageUrl: ApiConstants.getSpriteUrl(pokemon.id),
                     fit: BoxFit.contain,
                     placeholder: (_, __) => const Center(
-                      child: CircularProgressIndicator(strokeWidth: 2),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.primaryRed,
+                        ),
+                        strokeWidth: 2,
+                      ),
                     ),
-                    errorWidget: (_, __, ___) =>
-                        const Icon(Icons.catching_pokemon, size: 48),
+                    errorWidget: (_, __, ___) => const Icon(
+                      Icons.catching_pokemon,
+                      size: 48,
+                      color: AppColors.textMedium,
+                    ),
                   ),
                 ),
               ),
               Text(
-                pokemon.id.toString(),
+                '#${pokemon.id.toString().padLeft(3, '0')}',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: cs.onSecondaryContainer,
+                  color: AppColors.textLight,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               Padding(
@@ -59,7 +70,8 @@ class PokemonCard extends StatelessWidget {
                   _displayName,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: cs.onPrimaryContainer,
+                    color: AppColors.textDark,
+                    fontSize: 14,
                   ),
                 ),
               ),

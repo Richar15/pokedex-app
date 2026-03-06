@@ -16,7 +16,6 @@ class PokemonProvider extends ChangeNotifier {
 
   PokemonListState get state => _state;
 
-
   List<Pokemon> get pokemon => UnmodifiableListView(_filtered);
   String get errorMessage => _errorMessage;
   String get query => _query;
@@ -27,6 +26,7 @@ class PokemonProvider extends ChangeNotifier {
 
     try {
       _allPokemon = await _service.fetchPokemonList();
+      _allPokemon.sort((a, b) => a.name.compareTo(b.name));
       _applyFilter();
       _setState(PokemonListState.success);
     } catch (e) {
@@ -48,11 +48,12 @@ class PokemonProvider extends ChangeNotifier {
       return;
     }
 
-
     final normalizedQuery = _query.toLowerCase();
-    _filtered = _allPokemon
-        .where((p) => p.name.toLowerCase().contains(normalizedQuery))
-        .toList();
+    _filtered =
+        _allPokemon
+            .where((p) => p.name.toLowerCase().contains(normalizedQuery))
+            .toList()
+          ..sort((a, b) => a.name.compareTo(b.name));
   }
 
   Future<PokemonDetail> fetchDetail(String name) async {
@@ -62,7 +63,6 @@ class PokemonProvider extends ChangeNotifier {
       throw Exception('Error al cargar detalle de $name: $e');
     }
   }
-
 
   void _setState(PokemonListState newState) {
     _state = newState;
