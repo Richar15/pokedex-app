@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'dart:collection' show UnmodifiableListView;
-import 'package:pokedex/src/api/api_constants/pokemon_list_state.dart';
+import 'package:pokedex/src/api/pokemon_list_state.dart';
 import '../models/pokemon.dart';
 import '../models/pokemon_detail.dart';
 import '../services/pokemon_service.dart';

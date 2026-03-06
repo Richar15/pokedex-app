@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/src/api/api_constants/api_constans.dart';
 import 'package:pokedex/src/constants/app_colors.dart';
+import 'package:pokedex/src/services/pokemon_service.dart';
 import '../../models/pokemon.dart';
 
 class PokemonCard extends StatelessWidget {
@@ -39,7 +39,7 @@ class PokemonCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
                   child: CachedNetworkImage(
-                    imageUrl: ApiConstants.getSpriteUrl(pokemon.id),
+                    imageUrl: PokemonService.instance.getSpriteUrl(pokemon.id),
                     fit: BoxFit.contain,
                     placeholder: (_, __) => const Center(
                       child: CircularProgressIndicator(

@@ -1,10 +1,8 @@
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pokedex/src/providers/api_provider.dart';
 
 import '../models/pokemon.dart';
 import '../models/pokemon_detail.dart';
-
 
 class PokemonService {
   PokemonService._();
@@ -19,6 +17,11 @@ class PokemonService {
 
   int get _limit => int.parse(dotenv.env['POKEMON_LIMIT']!);
 
+  String get _spriteBaseUrl => dotenv.env['SPRITE_BASE_URL']!;
+
+  String getSpriteUrl(int pokemonId) {
+    return '$_spriteBaseUrl/$pokemonId.png';
+  }
 
   Future<List<Pokemon>> fetchPokemonList() async {
     final url = '$_baseUrl/$_pokemonEndpoint?limit=$_limit';

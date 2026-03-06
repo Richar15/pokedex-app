@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex/src/api/api_constants/pokemon_list_state.dart';
+import 'package:pokedex/src/api/pokemon_list_state.dart';
 import 'package:pokedex/src/providers/pokemon_provider.dart';
 import 'package:pokedex/src/widgets/pokemon/pokemon_list.dart';
 import 'package:pokedex/src/widgets/error_view.dart';
