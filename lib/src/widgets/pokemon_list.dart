@@ -15,14 +15,43 @@ class PokemonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (pokemonList.isEmpty) {
-      return const Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.search_off, size: 56),
-            SizedBox(height: 12),
-            Text('No Pokémon found.'),
-          ],
+      final cs = Theme.of(context).colorScheme;
+
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: cs.secondaryContainer.withOpacity(0.5),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.search_off,
+                  size: 40,
+                  color: cs.onSecondaryContainer,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Pokémon no encontrado',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'No hay resultados para tu búsqueda.\nIntenta con otro nombre o término.',
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       );
     }

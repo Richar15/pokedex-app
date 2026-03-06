@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: AppRouter.router,  // GoRouter ya contiene el navigatorKey
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
       title: 'Pokédex',
       theme: ThemeData.light(),

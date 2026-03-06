@@ -38,6 +38,7 @@ dependencies:
   go_router: ^17.1.0
   cached_network_image: ^3.4.1
   flutter_dotenv: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,10 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/icon/pokemon.png"
 # The following section is specific to Flutter packages.
 flutter:
 

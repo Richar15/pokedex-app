@@ -4,11 +4,7 @@ import 'package:pokedex/src/api/api_constants/api_constans.dart';
 import '../models/pokemon.dart';
 
 class PokemonCard extends StatelessWidget {
-  const PokemonCard({
-    super.key,
-    required this.pokemon,
-    required this.onTap,
-  });
+  const PokemonCard({super.key, required this.pokemon, required this.onTap});
 
   final Pokemon pokemon;
   final VoidCallback onTap;
@@ -47,12 +43,12 @@ class PokemonCard extends StatelessWidget {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                     errorWidget: (_, __, ___) =>
-                    const Icon(Icons.catching_pokemon, size: 48),
+                        const Icon(Icons.catching_pokemon, size: 48),
                   ),
                 ),
               ),
               Text(
-                '#${pokemon.id.toString().padLeft(3, '0')}',
+                pokemon.id.toString(),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: cs.onSecondaryContainer,
                 ),

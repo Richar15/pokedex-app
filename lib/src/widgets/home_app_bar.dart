@@ -29,14 +29,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
           child: SearchBar(
             controller: controller,
-            hintText: 'Search Pokémon…',
+            hintText: 'Buscar Pokémon…',
             leading: const Icon(Icons.search),
             trailing: [
               if (controller.text.isNotEmpty)
-                IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: onClear,
-                ),
+                IconButton(icon: const Icon(Icons.clear), onPressed: onClear),
             ],
             onChanged: onChanged,
           ),
