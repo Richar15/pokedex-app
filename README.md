@@ -51,6 +51,10 @@ flutter build apk --debug
 flutter build ios
 ```
 
+## 📥 Descargas
+
+Puedes descargar la APK compilada directamente desde las [**Releases en GitHub**](https://github.com/Richar15/pokedex-app/releases). Solo descarga e instala el APK en tu dispositivo Android.
+
 ## 🏗️ Estructura del proyecto
 
 ```
