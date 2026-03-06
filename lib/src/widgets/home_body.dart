@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:pokedex/src/api/pokemon_list_state.dart';
 import 'package:pokedex/src/providers/pokemon_provider.dart';
 import 'package:pokedex/src/widgets/pokemon/pokemon_list.dart';
+import 'package:pokedex/src/widgets/pokemon/pokemon_list_skeleton.dart';
 import 'package:pokedex/src/widgets/error_view.dart';
-import 'package:pokedex/src/widgets/loading_view.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({
@@ -21,7 +21,7 @@ class HomeBody extends StatelessWidget {
     switch (provider.state) {
       case PokemonListState.idle:
       case PokemonListState.loading:
-        return const LoadingView();
+        return const PokemonListSkeleton();
 
       case PokemonListState.error:
         return ErrorView(
